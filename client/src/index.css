@@ -1,0 +1,229 @@
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&display=swap');
+
+:root {
+   /* mazimum mobile width: */
+   --mw: 500px;
+
+   --minimw: 400px;
+
+   --btnmax: 70px;
+
+   --btnmin: 50px;
+
+   --imgdiv:
+}
+
+body {
+   margin: 0;
+   padding: 0;
+   font-family: 'Comfortaa', cursive;
+
+   background: #7F7FD5;
+      /* fallback for old browsers */
+   /*background:linear-gradient(1deg, rgba(86, 90, 180, 1) 3%, rgba(69, 135, 244, 1) 99%);
+   background: -webkit-linear-gradient(to left, #84d4ea, #86A8E7, #7F7FD5);
+      /* Chrome 10-25, Safari 5.1-6 */
+   background: linear-gradient(to left, #84d4ea, #86A8E7, #7F7FD5);
+}
+
+
+
+.pr {
+   background-color: #A9C9FF;
+   background-image: linear-gradient(180deg, #A9C9FF 0%, #FFBBEC 100%);
+}
+
+.container {
+   height: 100vh;
+   /* height: calc(var(--vh, 1vh) * 100); */
+   /* height: -webkit-fill-available; */
+   width: 100vw;
+   display: grid;
+   position: relative;
+   /* background: url('../public/waves-01.svg') no-repeat; */
+   grid-template: 1fr 1.5fr / 0.5fr 2fr 0.5fr; /*  rows / columns  */
+}
+
+/* .back {
+   width: 100%;
+   height: 40vh;
+   position: absolute;
+} */
+
+.waves {
+   
+   height: auto;
+   fill: white;
+   left: -7px;
+   
+
+   width: 100%;
+   stroke: #fff;
+   stroke-miterlimit: 10;
+   stroke-width: 8px;
+   opacity: 0.6;
+}
+
+.area {
+   /* grid-column-start: 2;
+   grid-column-end: 3; */
+   grid-column: 2/3;
+   width: 100%;
+   height: 100%;
+
+
+   /* background-image: linear-gradient(rgba(0, 0, 0, 0) 18%, rgb(163, 136, 231) 80%), linear-gradient(rgb(163, 136, 231) 5%, rgba(0, 0, 0, 0) 20%), linear-gradient(rgba(255, 255, 255, 0.2) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.2) 1px, transparent 1px);
+   background-size: 100% 100%, 100% 100%, 30px 30px, 30px 30px; */
+}
+
+.origin {
+   position: absolute;
+   top: 0px;
+   left: calc(50% - 1px);
+   width: 2px;
+   bottom: 0px;
+   background-color: rgb(196, 55, 4);
+   height: 80%;
+   z-index: 1;
+}
+
+
+.pointer {
+   background-color: #2d4693;
+   height: 50px;
+   width: 6px;
+   position: absolute;
+   top: 17%;
+   transition: all .4s;
+   z-index: 4;
+   border-radius: 5px;
+}
+
+
+.main {
+   grid-row: 2/3;
+   grid-column: 2/3;
+   width: 100%;
+   height: 100%;
+   position: relative;
+   /* top: -10%; */
+   /* z-index: 6; */
+   /* width: 100%;
+   height:100%; */
+}
+
+
+.inmain {
+   position: absolute;
+   grid-template-rows: 48px 1fr;
+   grid-template-columns: 48px 300px 48px;
+   max-width: 100%;
+   justify-content: center;
+   /* padding-top: 5vh; */
+   height: 100%;
+   width: 100%;
+   /* box-sizing: border-box; */
+   display: grid;
+   gap: 15vh 8px;  
+}
+
+/* .center {
+   max-width: 100%;
+   width: 100%;
+   height: 100%;
+} */
+
+.center {
+   display: block;
+   position: relative;
+   grid-row: 1 / span 3;
+   max-width: 100%;
+   width: 100%;
+   height: 100%;
+   min-height: 330px;
+   margin-left: auto;
+   margin-right: auto;
+}
+
+
+.pic {
+   display: block;
+   max-width: 100%;
+   width: 100%;
+   height: 100%;
+   min-height: 330px;
+   position: relative;
+   object-fit: contain;
+   object-position: center top;
+   z-index: 2;
+}
+
+
+.numbers {
+   font-size: 25px;
+   position: absolute;
+   top: 20px;
+   right: 30px;
+}
+
+
+
+.btn {
+   all: unset;
+   
+   text-align: center;
+   font-size: 25px;
+   height: 70px;
+   width: 70px;
+   color: #fff;
+   border: 2px solid #fff;
+   border-radius: 50%;
+   z-index: 5;
+   cursor: pointer;
+}
+
+
+.btn:hover {
+   color: #000;
+}
+
+
+.green {
+   /* background-color: green; */
+   color: #000;
+   background-color: #fff;
+   border-color: #2d4693;
+   box-shadow: 0 0 0 0 #2d4693 inset, 0 0 1px 3px #2d4693;
+   /* box-shadow: 0 0 10px 4px #31d233; */
+}
+
+
+
+.theAnswer {
+   background-color: #31d233;
+   background-color: #ebf297;
+   transition: all 0.3s step-end;
+}
+
+
+.prefooter {
+   position: absolute;
+   width: 100vw;
+   height: 40px;
+   padding: 10px 0;
+   background-color: rgb(45, 32, 81);
+   bottom: 0;
+
+}
+
+
+@media screen and (max-width: 500px) {
+
+
+   .btn {
+      height: 50px;
+      width: 50px;
+      font-size: calc(0.35714285714 * 50px);
+      font-weight: 700;
+   }
+}
