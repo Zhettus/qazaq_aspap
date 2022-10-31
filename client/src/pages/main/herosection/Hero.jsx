@@ -14,14 +14,14 @@ function HeroSection() {
           <img src={qobyz}></img>
       </div>
       <h1>Welcome to Qazaq Aspap</h1>
-      <p>Use our tuner and learn to play on dombyra, qobyz and etc</p>
+      <p>This web app will give you lots of opportunities such as: tuner, lessons</p>
       <div className='hero-btns'>
         <Button
           className='btns'
           buttonStyle='btn--outline'
           buttonSize='btn--large'
         >
-          Wanna try out tuner?
+          Let's start our journey? 
         </Button>
       </div>
     </div>

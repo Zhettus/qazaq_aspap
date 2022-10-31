@@ -7,6 +7,7 @@ import { BackWaves } from "../BackWaves/back-waves";
 
 // import { useWindowSize } from "../../hooks/useWindowsSize"
 
+import {tunerValue} from "../../../../firebase";
 
 // let position = "30%";
 
@@ -26,8 +27,10 @@ const playAudio = async () => {
    try {
       await audio.play();
       console.log("Playing audio");
+      tunerValue.set("Alright!")
    } catch (err) {
       console.log("Failed to play, error: " + err);
+      tunerValue.set("Failed to play, error")
    }
 }
 
@@ -102,6 +105,7 @@ export const Dombyra = () => {
 
       return () => {
          console.log("RETURNED");
+         tunerValue.set("RETURNED")
          clearTimeout(interval);
       }
       
@@ -207,6 +211,7 @@ export const Dombyra = () => {
 
    boolzhan = isInRange();
    console.log({position});
+   tunerValue.set({position});
 
    
    // if (boolzhan && (c == 0)) {

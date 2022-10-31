@@ -5,6 +5,7 @@ import { Prima } from "./pages/tuner/components/Prima/prima";
 import { Qobyz } from "./pages/tuner/components/Qyl/qobyz";
 import { Home } from './pages/home/Home';
 import {Main} from "./pages/main/Main";
+import {Registration} from "./pages/auth/Registration"
 
 
 function App() {
@@ -15,6 +16,8 @@ function App() {
         <Route path="/dombyra" element={<Dombyra/>}/>
         <Route path="/qobyz" element={<Qobyz/>}/>
         <Route path="/prima-qobyz" element={<Prima/>}/>
+        <Route path="/registration" element={<Registration/>}/>
+        <Route path="/home" element={<Home/>}/>
       </Routes>
     </div>
   );
