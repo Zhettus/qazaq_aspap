@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/static/css/main.0d418a19.css",
+    "main.js": "/static/js/main.51bd8cd6.js",
+    "static/media/qobyz-without-background.png": "/static/media/qobyz-without-background.db5349d16ed44561775d.png",
+    "static/media/waves_final-02.svg": "/static/media/waves_final-02.c22c0d81e10d912e7225.svg",
+    "static/media/dombyra-without-background.png": "/static/media/dombyra-without-background.8f26278b9c873f05863f.png",
+    "index.html": "/index.html",
+    "main.0d418a19.css.map": "/static/css/main.0d418a19.css.map",
+    "main.51bd8cd6.js.map": "/static/js/main.51bd8cd6.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.0d418a19.css",
+    "static/js/main.51bd8cd6.js"
+  ]
+}

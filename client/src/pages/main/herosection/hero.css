@@ -51,11 +51,11 @@
   }
   
   .hero-btns .btn {
-    margin: 6px;
+    margin: 10px;
   }
   
   .fa-play-circle {
-    margin-left: 4px;
+    margin-left: 10px;
   }
   
   @media screen and (max-width: 960px) {

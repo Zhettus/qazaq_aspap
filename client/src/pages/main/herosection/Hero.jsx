@@ -13,7 +13,7 @@ function HeroSection() {
       <div className='qobyz-image'>
           <img src={qobyz}></img>
       </div>
-      <h1>Welcome to Qazaq Aspap</h1>
+      <h1>Welcome to Qazaq Aspap`</h1>
       <p>This web app will give you lots of opportunities such as: tuner, lessons</p>
       <div className='hero-btns'>
         <Button

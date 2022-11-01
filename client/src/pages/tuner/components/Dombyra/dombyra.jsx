@@ -8,6 +8,12 @@ import { BackWaves } from "../BackWaves/back-waves";
 // import { useWindowSize } from "../../hooks/useWindowsSize"
 
 import {tunerValue} from "../../../../firebase";
+import {pitchValue} from "../../../../firebase";
+import {clarityValue} from "../../../../firebase";
+
+// import {DbuttonClick} from "../../../../firebase";
+// import {GbuttonClick} from "../../../../firebase";
+import {Check} from "../../../../firebase";
 
 // let position = "30%";
 
@@ -22,6 +28,8 @@ const threshold = 1;
 const nthrshld = -1*threshold;
 
 const audio = new Audio("tuner.mp3");
+
+
 
 const playAudio = async () => {
    try {
@@ -157,7 +165,7 @@ export const Dombyra = () => {
             // changeLineColor();
             if (boolzhan) {playAudio();}
          
-            // clearTimeout(timer);
+            // clearTimeout(timer); numbers
             
             // lineColorClass = "";
          } else if (diffD < nAbsThr && diffD > nthrshld) {
@@ -212,7 +220,8 @@ export const Dombyra = () => {
    boolzhan = isInRange();
    console.log({position});
    tunerValue.set({position});
-
+   pitchValue.set({pitch});
+   clarityValue.set({clarity});
    
    // if (boolzhan && (c == 0)) {
    //    c++;
@@ -239,21 +248,23 @@ export const Dombyra = () => {
             <div className="main">
       
                <div className="inmain">
+               <img className="pic" src="anotherdombyra.png" alt="dombyra pic" />
                   <button
                      className={`btn d-note${dColorClass}`} 
                      onClick={() => {
                         setNote("D");
+                        Check();
                      }}
                   >ре</button>
                   <button
                      className={`btn g-note${gColorClass}`} 
                      onClick={() => {
                         setNote("G");
+                        Check();
                      }}
+                     
                   >соль</button>
-                  <div className="center">
-                     <img className="pic" src="dombyra0.png" alt="dombyra pic" />
-                  </div>
+ 
                </div>
                   
             </div>
@@ -265,7 +276,9 @@ export const Dombyra = () => {
          </div>
          <div className="numbers">
             <div className="pitch">{pitch}</div>
+
             <div className="clarity">{clarity}</div>
+
          </div>
          
 

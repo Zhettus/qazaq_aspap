@@ -19,6 +19,17 @@
    grid-column-end: auto;
 }
 
+.pic {
+   display: block;
+   max-width: 100%;
+   width: 100%;
+   height: 500px;
+   position: absolute;
+   object-fit: contain;
+   object-position: center top;
+   z-index: 2;
+   transform: scaleX(-1);
+}
 /* @media screen and (max-width: 800px) { 
    .pic {
       width: 100%;
