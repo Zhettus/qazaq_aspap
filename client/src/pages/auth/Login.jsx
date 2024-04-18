@@ -1,29 +1,49 @@
-import React, {useState} from 'react';
+// AuthPage.jsx
+
+import React, { useState } from 'react';
 import './login.css'
 
-export const Login = () => {
+export const AuthPage = () => {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
 
-    const [user, setUser] = useState({
-        username: "", 
-        password: ""
-    })
-
-    const handleChange = e => {
-        const {name, value } = e.target
-        setUser({
-          ...user, 
-          [name]: value
-        })
-      }
-
+  const handleLogin = (e) => {
+    e.preventDefault();
+    // Handle login logic here
+    console.log('Logging in with:', username, password);
+  };
 
   return (
-    <div className='login'>
-      <input type="text" name="username" value={user.username} placeholder='enter your username' onChange={handleChange}/>
-      <input type="password" name="password" value={user.password}  placeholder='enter password' onChange={handleChange}/>
-      <div className="btn">Log In</div>
-      <div>Do not have an account?</div>
-      <div className="btn">Registration</div>
+    <div className="auth-container">
+      <form className="auth-form" onSubmit={handleLogin}>
+        <h2>Login</h2>
+        <div className="input-group">
+          <label htmlFor="username">Username or Email:</label>
+          <input
+            type="text"
+            id="username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            required
+          />
+        </div>
+        <div className="input-group">
+          <label htmlFor="password">Password:</label>
+          <input
+            type="password"
+            id="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+        </div>
+        <button type="submit">Login</button>
+        {/* Optional: Uncomment below for "Forgot Password" link */}
+        {/* <a href="/forgot-password">Forgot Password?</a> */}
+        {/* Optional: Uncomment below for "Sign Up" button */}
+        {/* <button type="button" onClick={() => history.push('/signup')}>Sign Up</button> */}
+      </form>
     </div>
-  )
-}
+  );
+};
+
