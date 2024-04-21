@@ -120,7 +120,7 @@ const About = () => {
       </Hand>
       <Main>
         <div>
-          <Title>About Us</Title>
+          <Title>Жоба туралы</Title>
           <CurvedLine />
         </div>
         <Content>
@@ -133,10 +133,7 @@ const About = () => {
             </Human>
 
             <Text>
-              We help our customers to tell about themselves, to grow and stand
-              out in an increasingly competitive digital world, through creative
-              projects that are able to attract and involve, creating strategic
-              value.
+            Қазақтың ұлттық аспаптары дыбыс ерекшелігіне қарай ішекті-шертпелі, үрмелі, ұрмалы деп бөлінеді. Ішекті-шертпелі аспаптарға домбыра, жетіген, шертер, қылқобыз жатады.
             </Text>
             <div>
               <Circle style={{ backgroundColor: "var(--purple)" }} />
