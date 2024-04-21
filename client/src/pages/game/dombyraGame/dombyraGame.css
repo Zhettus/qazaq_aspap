@@ -1,76 +1,45 @@
+.DombyraGame {
+  font-family: sans-serif;
+  text-align: center;
+}
+
+.game-container {
+  width: 100vw;
+  height: 80vh;
+  margin: 0 auto;
+  border: 1px solid #ddd;
+  position: relative;
+}
+
+.fruit {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #f00;
+  position: absolute;
+  animation: fallDown 3s linear infinite;
+}
+
 @keyframes fallDown {
-    /*from { top: 0; }
-    to { top: 100%; }  Move notes to the bottom */
-    0%{
-      transform:  translateY(-120%) rotate(0deg);
-    }
-    100%{
-      transform: translateY(120vh) rotate(-360deg);}
-  }
-  
+  from { top: 0; }
+  to { top: 100%; }
+}
 
+.box {
+  width: 100px;
+  height: 30px;
+  background-color: #00f;
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+}
 
-.game {
-    font-family: sans-serif;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100vw;
-    height: 100vh;
-    background-color: #f5f5f5;
-    height: 500px; 
-  }
-  
-  .button {
-    margin-bottom: 20px;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    background-color: #333;
-    color: #fff;
-  }
-  
-  .button:disabled {
-    opacity: 0.5;
-    cursor: default;
-  }
-  
-  .score {
-    font-size: 20px;
-    margin-bottom: 20px;
-  }
-  
-  .notes-container {
-    flex: 1;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: flex-end;
-    position: relative;
-  }
-  
-  .note {
-    position: absolute;
-    top: 0; /* Adjust if needed, depending on note height */
-    left: calc(50% - 20px); /* Center notes horizontally (adjust width as needed) */
-    /*width: 40px; /* Example width */
-    height: 40px; /* Example height */
-    background-color: #f0f; /* Example background color */
-    font-size: 20px; /* Example font size */
-    /*animation: fallDown 3s linear infinite;*/
-    display: inline-flex;
-    width: 16%;
-    animation: anim 2.5s ease-in-out infinite;
-    transform:  translateY(-120%) rotate(0deg);
-  }
-  
-  .C { background-color: #f00; color: #fff; }
-  .C1 { background-color: #d73322; color: #fff; }
-  .D { background-color: #a00; color: #fff; }
-  .D1 { background-color: #871a1a; color: #fff; }
-  .E { background-color: #000; color: #fff; }
-  .F { background-color: #00f; color: #000; }
-  .F1 { background-color: #00ccff; color: #000; }
-  .G { background-color: #0f0; color: #fff}
-
+.game-over {
+  font-size: 3em;
+  color: red;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

@@ -1,0 +1,44 @@
+.app {
+    display: flex;
+    min-height: 100vh;
+  }
+  
+  .dashboard {
+    width: 200px;
+    padding: 20px;
+    border-right: 1px solid #ddd;
+    background-color: #f5f5f5;
+  }
+  
+  .course-button {
+    width: 100%;
+    padding: 10px 20px;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #3D908B;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: all 0.2s ease-in-out;
+  }
+  
+  .course-button:hover {
+    background-color: #6097DF;
+  }
+  
+  .course-grid {
+    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-gap: 20px;
+    padding: 20px;
+      
+  }
+  
+  .course-image {
+    height: 50%; /* Set height to 0 to avoid unintended sizing */
+    padding-top: calc(100% / (image aspect ratio)); /* Adjust aspect ratio as needed */
+    object-fit: cover; /* Ensure images fit within container */
+  }
+  

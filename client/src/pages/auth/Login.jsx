@@ -3,6 +3,8 @@
 import React, { useState } from 'react';
 import './login.css'
 
+import { Link } from 'react-router-dom';
+
 export const AuthPage = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -16,6 +18,7 @@ export const AuthPage = () => {
   return (
     <div className="auth-container">
       <form className="auth-form" onSubmit={handleLogin}>
+
         <h2>Login</h2>
         <div className="input-group">
           <label htmlFor="username">Username or Email:</label>
@@ -37,7 +40,9 @@ export const AuthPage = () => {
             required
           />
         </div>
+        <Link to="/edu">
         <button type="submit">Login</button>
+        </Link>
         {/* Optional: Uncomment below for "Forgot Password" link */}
         {/* <a href="/forgot-password">Forgot Password?</a> */}
         {/* Optional: Uncomment below for "Sign Up" button */}

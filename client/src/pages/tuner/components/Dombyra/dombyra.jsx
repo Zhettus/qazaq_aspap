@@ -7,13 +7,13 @@ import { BackWaves } from "../BackWaves/back-waves";
 
 // import { useWindowSize } from "../../hooks/useWindowsSize"
 
-import {tunerValue} from "../../../../firebase";
-import {pitchValue} from "../../../../firebase";
-import {clarityValue} from "../../../../firebase";
+//import {tunerValue} from "../../../../firebase";
+//import {pitchValue} from "../../../../firebase";
+//import {clarityValue} from "../../../../firebase";
 
 // import {DbuttonClick} from "../../../../firebase";
 // import {GbuttonClick} from "../../../../firebase";
-import {Check} from "../../../../firebase";
+///import {Check} from "../../../../firebase";
 
 // let position = "30%";
 
@@ -35,10 +35,10 @@ const playAudio = async () => {
    try {
       await audio.play();
       console.log("Playing audio");
-      tunerValue.set("Alright!")
+      //tunerValue.set("Alright!")
    } catch (err) {
       console.log("Failed to play, error: " + err);
-      tunerValue.set("Failed to play, error")
+      //tunerValue.set("Failed to play, error")
    }
 }
 
@@ -58,6 +58,22 @@ export const Dombyra = () => {
    const [diffG, setDiffG] = useState(0);
    const [diffD, setDiffD] = useState(0);
    const[ position, setPosition] = useState("calc(50% - 3px)");
+
+
+   //wasn't in my initial code//
+   let windowInnerWidth = 0;
+
+   const handleResize = () => {
+      const currentWinInnerWidth = window.innerWidth;
+      if (windowInnerWidth === 0 || currentWinInnerWidth !== windowInnerWidth) {
+         windowInnerWidth = currentWinInnerWidth;
+         const vh = window.innerHeight * 0.01;
+         document.documentElement.style.setProperty('--vh', `${vh}px`);
+      }
+      
+   }
+
+   handleResize();
    
 
    const updatePitch = (analyserNode, detector, input, sampleRate) => {
@@ -113,7 +129,7 @@ export const Dombyra = () => {
 
       return () => {
          console.log("RETURNED");
-         tunerValue.set("RETURNED")
+         //tunerValue.set("RETURNED")
          clearTimeout(interval);
       }
       
@@ -219,9 +235,9 @@ export const Dombyra = () => {
 
    boolzhan = isInRange();
    console.log({position});
-   tunerValue.set({position});
-   pitchValue.set({pitch});
-   clarityValue.set({clarity});
+   //tunerValue.set({position});
+   //pitchValue.set({pitch});
+   //clarityValue.set({clarity});
    
    // if (boolzhan && (c == 0)) {
    //    c++;
@@ -253,14 +269,14 @@ export const Dombyra = () => {
                      className={`btn d-note${dColorClass}`} 
                      onClick={() => {
                         setNote("D");
-                        Check();
+                        //Check();
                      }}
                   >ре</button>
                   <button
                      className={`btn g-note${gColorClass}`} 
                      onClick={() => {
                         setNote("G");
-                        Check();
+                        //Check();
                      }}
                      
                   >соль</button>

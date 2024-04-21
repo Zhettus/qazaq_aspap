@@ -1,137 +1,83 @@
 import React, { useState, useEffect } from 'react';
-import { Howl } from 'howler'; // Sound library for feedback
-
-const NOTE_NAMES = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'];
+import './dombyraGame.css';
 
 export const DombyraGame = () => {
-  const [notes, setNotes] = useState([]);
-  const [playing, setPlaying] = useState(false);
+  const [fruits, setFruits] = useState([]);
+  const [boxPosition, setBoxPosition] = useState({ x: window.innerWidth / 2 });
+  const [gameOver, setGameOver] = useState(false);
   const [score, setScore] = useState(0);
-  const [currentExpectedNote, setCurrentExpectedNote] = useState(null);
-  const [lives, setLives] = useState(3);
-  const [missedNotes, setMissedNotes] = useState(0);
-
-  // Howl sound effects
-  //const correctSound = new Howl({ src: ['correct.mp3'] }); // Replace with your sound file
-  //const wrongSound = new Howl({ src: ['wrong.mp3'] }); // Replace with your sound file
+  const [missedFruits, setMissedFruits] = useState(0);
 
   useEffect(() => {
-    const intervalId = setInterval(() => {
-      const newNote = { id: Math.random(), note: NOTE_NAMES[Math.floor(Math.random() * NOTE_NAMES.length)] };
-      setNotes([...notes, newNote]);
-      setCurrentExpectedNote(newNote.note); // Set expected note when a new note appears
-      setMissedNotes(0); // Reset missed notes on new note
-    }, 1000); // Add a new note every second
-
-    /*const removeBottomNotes = () => {
-      const bottomReachedNotes = notes.filter((note) => {
-        const noteElement = document.getElementById(note.id);
-        if (noteElement) {
-          const noteBottom = noteElement.getBoundingClientRect().bottom;
-          return noteBottom >= window.innerHeight;
-        }
-        return false;
-      });
-
-      setNotes(notes.filter((note) => !bottomReachedNotes.includes(note))); // Remove notes that reached bottom
-      if (bottomReachedNotes.length > 0) {
-        // Handle missed notes reaching bottom (reduce lives, play sound)
-        setLives(lives - bottomReachedNotes.length);
-        wrongSound.play();
-      }
+    const generateFruit = () => {
+      const fruit = {
+        id: Math.random(),
+        x: Math.floor(Math.random() * window.innerWidth),
+        y: 0,
+        speed: Math.random(), // Random speed between 1 and 4
+      };
+      setFruits((prevFruits) => [...prevFruits, fruit]);
     };
 
-    const combinedIntervalId = setInterval(removeBottomNotes, 100); // Check for bottom notes frequently*/
+    const intervalId = setInterval(generateFruit, 1000); // Faster fruit appearance (adjust as needed)
+
+    const handleKeyDown = (event) => {
+      const movement = event.key === 'ArrowLeft' ? -10 : 10; // Faster box movement (adjust as needed)
+      setBoxPosition((prevPosition) => ({
+        x: Math.max(0, Math.min(window.innerWidth - 100, prevPosition.x + movement)),
+      }));
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
 
     return () => {
       clearInterval(intervalId);
-      //clearInterval(combinedIntervalId);
+      document.removeEventListener('keydown', handleKeyDown);
     };
-  //}, [notes, lives, wrongSound]);
-  }, [notes]);
+  }, []);
 
-  const handlePlay = async () => {
-    setPlaying(true);
-    const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+  const handleCollision = (fruit) => {
+    setScore((prevScore) => prevScore + 1);
+    setFruits((prevFruits) => prevFruits.filter((f) => f.id !== fruit.id));
+  };
 
-    const audioCtx = new AudioContext();
-    const mic = audioCtx.createMediaStreamSource(stream);
-
-    const analyser = audioCtx.createAnalyser();
-    mic.connect(analyser);
-
-    const bufferLength = analyser.frequencyBinCount;
-    const frequencyData = new Uint8Array(bufferLength);
-
-    const checkPitch = () => {
-      analyser.getByteTimeDomainData(frequencyData);
-
-      const dominantFrequency = frequencyData.indexOf(Math.max(...frequencyData));
-      const playedNote = convertFrequencyToNote(dominantFrequency);
-
-      if (playedNote === currentExpectedNote) {
-        setScore(score + 1);
-        setMissedNotes(0);
-        //correctSound.play();
-      } else {
-        setMissedNotes(missedNotes + 1);
-        if (missedNotes >= 10) {
-          setLives(lives - 1);
-          setMissedNotes(+ 1);
-          //wrongSound.play();
-        }
+  const handleMissedFruit = () => {
+    setMissedFruits((prevMissed) => {
+      const newMissed = prevMissed + 1;
+      if (newMissed >= 20) {
+        setGameOver(true);
       }
-
-      if (playing) {
-        requestAnimationFrame(checkPitch);
-      }
-    };
-
-    checkPitch();
-  };
-
-  const convertFrequencyToNote = (frequency) => {
-    // Replace with logic to convert frequency bin index to a musical note name
-    // You can use libraries like tone.js or research music theory for conversion
-    console.log(`Frequency: ${frequency}`);
-    return null;
-  };
-
-  const handleNoteHit = (note) => {
-    // Note hit detection remains for touch devices (optional)
-    setNotes(notes.filter((n) => n.id !== note.id));
-  };
-
-  const handleGameOver = () => {
-    setPlaying(false);
-    setNotes([]);
-    setScore(score, 0);
-    setLives(3); // Reset lives on game over
-  };
-
-  const handleStopGame = () => {
-    setPlaying(false);
-    setNotes([]); // Clear notes on stop
+      return newMissed;
+    });
   };
 
   return (
-    <div className="game">
-      <button onClick={handlePlay} disabled={playing}>
-        {playing ? 'Playing...' : 'Start Game'}
-      </button>
-      <button onClick={handleStopGame} disabled={!playing}>Stop Game</button>
-      <div className="score">Score: {score}</div>
-      <div className="lives">Lives: {lives}</div>
-      <div className="notes-container">
-        {notes.map((note) => (
-          <div key={note.id} className={`note ${note.note}`} onTouchStart={() => handleNoteHit(note)}>
-            {note.note}
-          </div>
+    <div className="App">
+      <h1>Catch the Fruits! Score: {score}</h1>
+      <div className="game-container">
+        {fruits.map((fruit) => (
+          <div
+            key={fruit.id}
+            className="fruit"
+            style={{ left: `${fruit.x}px`, top: `${fruit.y}px` }}
+            onAnimationEnd={() => {
+              const isColliding =
+                fruit.y >= window.innerHeight - 50 && // Check within a larger area
+                fruit.x >= boxPosition.x - 25 &&
+                fruit.x <= boxPosition.x + 75;
+
+              if (isColliding) {
+                handleCollision(fruit);
+              } else if (fruit.y >= window.innerHeight) {
+                handleMissedFruit();
+                setFruits((prevFruits) => prevFruits.filter((f) => f !== fruit)); // Remove fruit even if missed
+              }
+            }}
+          />
         ))}
+        <div className="box" style={{ left: `${boxPosition.x}px` }} />
       </div>
-      <div className="play-line"></div>
-      {lives === 0 && handleGameOver()}
+      {gameOver && <div className="game-over">Game Over!</div>}
     </div>
   );
 };
-
